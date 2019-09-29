@@ -1,0 +1,32 @@
+{
+    "name": "devuniverse/permissions",
+    "description": "A package to manage permissions for laravel applications",
+    "homepage": "https://github.com/devuniverse/permissions",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Permissions",
+            "email": "ishimwe@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+          "Devuniverse\\Permissions\\": "/src"
+        },
+        "files": [
+            "src/Support/helpers.php"
+        ]
+      },
+      "extra": {
+          "laravel": {
+              "providers": [
+                  "Devuniverse\\Permissions\\PermissionsServiceProvider"
+              ]
+          }
+      },
+      "minimum-stability": "stable",
+      "require-dev": {
+          "laravel/laravel": "5.8.*"
+    }
+}
