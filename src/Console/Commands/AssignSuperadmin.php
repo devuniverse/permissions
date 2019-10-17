@@ -208,7 +208,30 @@ class AssignSuperadmin extends Command
             }
 
           }
+          echo '|***********************************************|'. PHP_EOL;
+          echo '|*********  ADDING MEMBER PERMISSIONS   ********|'. PHP_EOL;
+          echo '|***********************************************|'. PHP_EOL;
 
+          $member =\Devuniverse\Permissions\Models\Role::where('slug', 'team_member')->first();
+
+          $toIncludeMember =  ['access_dashboard','access_profile','access_module_posts','access_module_projects','access_module_tasks','access_module_media','access_module_profile','read_own_post','read_project','read_own_media','read_media','list_medias','create_media','update_media','delete_media','read_task','list_tasks','create_task','update_task'];
+
+          if($member){
+
+            foreach ($toIncludeMember as $exm => $eexm) {
+              $permMember =\Devuniverse\Permissions\Models\Permission::where('slug', $eexm)->first();
+
+              $assignMemberExists =\Devuniverse\Permissions\Models\Role_permission::where('role_id', $member->id)->where('permission_id', $permMember->id)->first();
+              if(!$assignMemberExists){
+                $assignMember = new \Devuniverse\Permissions\Models\Role_permission();
+                $assignMember->role_id = $member->id;
+                $assignMember->permission_id = $permMember->id;
+                $assignMember->save();
+                echo 'Member given : '.$eexm.''. PHP_EOL;
+              }
+            }
+
+          }
           return '';
           exit;
 
