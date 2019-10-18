@@ -232,6 +232,38 @@ class AssignSuperadmin extends Command
             }
 
           }
+
+          echo '|***********************************************|'. PHP_EOL;
+          echo '|***** ADDING Financial Officer PERMISSIONS ****|'. PHP_EOL;
+          echo '|***********************************************|'. PHP_EOL;
+
+          $fo =\Devuniverse\Permissions\Models\Role::where('slug', 'financial_officer')->first();
+
+          $toIncludeFo =  [
+            'access_dashboard','access_profile','access_module_posts',
+            'access_module_projects','access_module_tasks','access_module_media',
+            'access_module_profile','read_own_post','read_project','read_own_media',
+            'read_media','list_medias','create_media','update_media','delete_media',
+            'read_task','list_tasks','create_task','update_task','list_ft','create_ft','delete_ft','update_ft'
+          ];
+
+          if($fo){
+
+            foreach ($toIncludeFo as $f => $ffo) {
+              $permFo =\Devuniverse\Permissions\Models\Permission::where('slug', $ffo)->first();
+
+              $assignFoExists =\Devuniverse\Permissions\Models\Role_permission::where('role_id', $fo->id)->where('permission_id', $permFo->id)->first();
+              if(!$assignFoExists){
+                $assignFo = new \Devuniverse\Permissions\Models\Role_permission();
+                $assignFo->role_id = $fo->id;
+                $assignFo->permission_id = $permFo->id;
+                $assignFo->save();
+                echo 'Financial officer given : '.$ffo.''. PHP_EOL;
+              }
+            }
+
+          }
+          
           return '';
           exit;
 
