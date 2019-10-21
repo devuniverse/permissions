@@ -214,7 +214,7 @@ class AssignSuperadmin extends Command
 
           $member =\Devuniverse\Permissions\Models\Role::where('slug', 'team_member')->first();
 
-          $toIncludeMember =  ['access_dashboard','access_profile','access_module_posts','access_module_projects','access_module_tasks','access_module_media','access_module_profile','read_own_post','read_project','read_own_media','read_media','list_medias','create_media','update_media','delete_media','read_task','list_tasks','create_task','update_task'];
+          $toIncludeMember =  ['access_dashboard','access_profile','access_module_posts','access_module_projects','access_module_tasks','access_module_media','access_module_profile','read_own_post','list_projects','read_project','read_own_media','read_media','list_medias','create_media','update_media','delete_media','read_task','list_tasks','create_task','update_task'];
 
           if($member){
 
@@ -263,7 +263,7 @@ class AssignSuperadmin extends Command
             }
 
           }
-          
+
           return '';
           exit;
 
