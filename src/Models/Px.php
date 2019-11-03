@@ -60,6 +60,9 @@ class Px extends Model
       ['change_user_password' => 'Change User Password'],
       ['change_user_avatar' => 'Change User Avatar'],
       ['delete_user' => 'Delete User'],
+      ['send_invitation'=>'Send invitation'],
+      ['remove_invitation'=>'Remove invitation'],
+      ['remove_user' => 'Remove User'],
 
       ['read_setting' => 'Read Setting'],
       ['list_settings'=> 'List Settings'],

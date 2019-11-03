@@ -140,7 +140,7 @@ class AssignSuperadmin extends Command
 
           $admin =\Devuniverse\Permissions\Models\Role::where('slug', 'admin')->first();
 
-          $toIncludeAdmin =  ['read_own_post','read_post','list_posts','create_post','update_post','delete_post','read_project','list_projects','create_project','update_project','delete_project','read_own_media','read_media','list_medias','create_media','update_media','delete_media','read_user','list_users','create_user','update_user','delete_user','read_setting','list_settings','create_setting','update_setting','access_dashboard','access_profile','access_module_posts','access_module_pages','access_module_projects','access_module_media','access_module_users','access_module_profile'];
+          $toIncludeAdmin =  ['read_own_post','read_post','list_posts','create_post','update_post','delete_post','read_project','list_projects','create_project','update_project','delete_project','read_own_media','read_media','list_medias','create_media','update_media','delete_media','read_user','list_users','create_user','update_user','delete_user','remove_user','read_setting','list_settings','create_setting','update_setting','access_dashboard','access_profile','access_module_posts','access_module_pages','access_module_projects','access_module_media','access_module_users','access_module_profile'];
 
           if($admin){
 
@@ -190,7 +190,15 @@ class AssignSuperadmin extends Command
 
           $owner =\Devuniverse\Permissions\Models\Role::where('slug', 'owner')->first();
 
-          $toIncludeOwner =  ['access_dashboard','access_profile','access_module_posts','access_module_projects','access_module_tasks','access_module_media','access_module_profile','read_own_post','read_post','list_posts','create_post','update_post','delete_post','read_project','list_projects','create_project','update_project','delete_project','read_own_media','read_media','list_medias','create_media','update_media','delete_media','read_task','list_tasks','create_task','update_task','delete_task','manage_team'];
+          $toIncludeOwner =  [
+          'access_dashboard','access_profile','access_module_posts',
+          'access_module_projects','access_module_tasks','access_module_media',
+          'access_module_profile','read_own_post','read_post','list_posts',
+          'create_post','update_post','delete_post','read_project','list_projects',
+          'create_project','update_project','delete_project','read_own_media',
+          'read_media','list_medias','create_media','update_media',
+          'delete_media','read_task','list_tasks','create_task','update_task',
+          'delete_task','manage_team','send_invitation','remove_invitation','remove_user'];
 
           if($owner){
 
