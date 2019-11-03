@@ -27,6 +27,6 @@
       },
       "minimum-stability": "stable",
       "require-dev": {
-          "laravel/laravel": "5.8.*"
+          "laravel/laravel": "^6.0"
     }
 }
