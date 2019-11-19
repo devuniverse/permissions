@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 use Devuniverse\Permissions\Models\Permission;
 use Devuniverse\Permissions\Models\Entity;
 use Devuniverse\Permissions\Models\Userrole;
-use Devuniverse\Permissions\Models\Role;
 use Devuniverse\Permissions\Models\Role_permission;
 
 class Role extends Model

@@ -93,6 +93,7 @@ class Px extends Model
     }
     $roles = [
       ['superadmin' => 'Super Admin'],
+      ['supportadmin' => 'Support Admin'],
       ['admin'=> 'Admin'],
       ['editor' => 'Editor'],
       ['owner' => 'Owner'],

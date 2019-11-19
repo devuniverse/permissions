@@ -59,6 +59,7 @@ class PermissionsServiceProvider extends ServiceProvider
         $luser  = \Devuniverse\Permissions\Models\User::find( \Auth::user()->id );
         $view->with('pxs', $luser);
         $view->with('puser', $luser);
+        $view->with('permitted', $luser);
 
         $entityUrl = \Request()->entity;
 
