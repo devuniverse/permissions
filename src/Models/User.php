@@ -63,7 +63,7 @@ class User extends Authenticatable
   static public function userAdmin($user){
     $superAdminRole = Role::where('slug','superadmin')->first();
     $superAdminRoleId = $superAdminRole->id;
-    $userRoles = Userrole::where('user_id', $user->id)->all();
+    $userRoles = Userrole::where('user_id', $user->id)->get();
     $userRolesX= array_column($userRoles->toArray(), 'role_id');
     return in_array($superAdminRoleId, $userRolesX ) ? true : false;
   }
