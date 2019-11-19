@@ -20,9 +20,7 @@ use \Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
 class User extends Authenticatable
 {
-  private function __construct(){
 
-  }
   protected $table = 'users';
 
   public function userRole(){
@@ -62,7 +60,7 @@ class User extends Authenticatable
   /**
    * userAdmin
    * @var object $user
-   * @return binary 
+   * @return binary
    */
   static public function userAdmin($user){
     $superAdminRole = Role::where('slug','superadmin')->first();
