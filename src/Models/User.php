@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Auth;
 use Config;
-
 use Devuniverse\Permissions\Models\Permission;
 use Devuniverse\Permissions\Models\Entity;
 use Devuniverse\Permissions\Models\Userrole;
@@ -60,6 +59,11 @@ class User extends Authenticatable
     }
     return $pxs;
   }
+  /**
+   * userAdmin
+   * @var object $user
+   * @return binary 
+   */
   static public function userAdmin($user){
     $superAdminRole = Role::where('slug','superadmin')->first();
     $superAdminRoleId = $superAdminRole->id;
