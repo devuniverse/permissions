@@ -31,7 +31,7 @@ class AssignSuperadmin extends Command
     {
         parent::__construct();
     }
-    function private permissionExists($p){
+    private function permissionExists($p){
       $perm =\Devuniverse\Permissions\Models\Permission::where('slug', $p)->first();
       if(!$perm){
         return false;
