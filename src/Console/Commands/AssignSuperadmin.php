@@ -31,6 +31,14 @@ class AssignSuperadmin extends Command
     {
         parent::__construct();
     }
+    function private permissionExists($p){
+      $perm =\Devuniverse\Permissions\Models\Permission::where('slug', $p)->first();
+      if(!$perm){
+        return false;
+      }else{
+        return true;
+      }
+    }
 
     /**
      * Execute the console command.
@@ -141,20 +149,28 @@ class AssignSuperadmin extends Command
 
           $sysadmin =\Devuniverse\Permissions\Models\Role::where('slug', 'supportadmin')->first();
 
-          $toIncludeSysAdmin =  ['support_system','read_own_post','read_post','list_posts','create_post','update_post','delete_post','read_project','list_projects','create_project','update_project','delete_project','read_own_media','read_media','list_medias','create_media','update_media','delete_media','read_user','list_users','create_user','update_user','delete_user','remove_user','read_setting','list_settings','create_setting','update_setting','access_dashboard','access_profile','access_module_posts','access_module_pages','access_module_projects','access_module_media','access_module_users','access_module_profile'];
+          $toIncludeSysAdmin =  ['support_system','read_own_post','read_post','list_posts','create_post','update_post','delete_post','read_project',
+          'list_projects','create_project','update_project','delete_project','read_own_media','read_media','list_medias','create_media','update_media',
+          'delete_media','read_user','list_users','create_user','update_user','delete_user','remove_user','read_setting','list_settings','create_setting',
+          'update_setting','access_dashboard','access_profile','access_module_posts','access_module_pages','access_module_projects','access_module_media',
+          'access_module_users','access_module_profile'];
 
           if($sysadmin){
 
             foreach ($toIncludeSysAdmin as $f => $p) {
-              $permSys =\Devuniverse\Permissions\Models\Permission::where('slug', $p)->first();
+              if(self::permissionExists($p)){
+                $permSys =\Devuniverse\Permissions\Models\Permission::where('slug', $p)->first();
 
-              $assignSysAdminExists =\Devuniverse\Permissions\Models\Role_permission::where('role_id', $sysadmin->id)->where('permission_id', $permSys->id)->first();
-              if(!$assignSysAdminExists){
-                $assignSysAdmin = new\Devuniverse\Permissions\Models\Role_permission();
-                $assignSysAdmin->role_id = $sysadmin->id;
-                $assignSysAdmin->permission_id = $permSys->id;
-                $assignSysAdmin->save();
-                echo 'System ADMIN given : '.$p.''. PHP_EOL;
+                $assignSysAdminExists =\Devuniverse\Permissions\Models\Role_permission::where('role_id', $sysadmin->id)->where('permission_id', $permSys->id)->first();
+                if(!$assignSysAdminExists){
+                  $assignSysAdmin = new\Devuniverse\Permissions\Models\Role_permission();
+                  $assignSysAdmin->role_id = $sysadmin->id;
+                  $assignSysAdmin->permission_id = $permSys->id;
+                  $assignSysAdmin->save();
+                  echo 'System ADMIN given : '.$p.''. PHP_EOL;
+                }
+              }else{
+                echo 'Permission : '.$p.' DOES NOT EXIST'. PHP_EOL;
               }
             }
 
