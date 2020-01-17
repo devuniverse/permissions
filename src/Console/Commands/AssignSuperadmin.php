@@ -63,7 +63,7 @@ class AssignSuperadmin extends Command
               $found =\Devuniverse\Permissions\Models\Permission::where('slug', $k)->first();
               if( !$found ){
 
-                $permission = new\Devuniverse\Permissions\Models\Permission();
+                $permission = new \Devuniverse\Permissions\Models\Permission();
                 $permission->slug = $k;
                 $permission->name = $v;
                 $permission->save();
@@ -89,7 +89,7 @@ class AssignSuperadmin extends Command
               $found =\Devuniverse\Permissions\Models\Role::where('slug', $k)->first();
               if( !$found ){
 
-                $role = new\Devuniverse\Permissions\Models\Role();
+                $role = new \Devuniverse\Permissions\Models\Role();
                 $role->slug = $k;
                 $role->name = $v;
                 $role->save();
@@ -133,7 +133,7 @@ class AssignSuperadmin extends Command
             foreach ($allPermissions as $f => $p) {
               $assignSadminExists =\Devuniverse\Permissions\Models\Role_permission::where('role_id', $sadmin->id)->where('permission_id', $p->id)->first();
               if(!$assignSadminExists){
-                $assignSadmin = new\Devuniverse\Permissions\Models\Role_permission();
+                $assignSadmin = new \Devuniverse\Permissions\Models\Role_permission();
                 $assignSadmin->role_id = $sadmin->id;
                 $assignSadmin->permission_id = $p->id;
                 $assignSadmin->save();
@@ -163,7 +163,7 @@ class AssignSuperadmin extends Command
 
                 $assignSysAdminExists =\Devuniverse\Permissions\Models\Role_permission::where('role_id', $sysadmin->id)->where('permission_id', $permSys->id)->first();
                 if(!$assignSysAdminExists){
-                  $assignSysAdmin = new\Devuniverse\Permissions\Models\Role_permission();
+                  $assignSysAdmin = new \Devuniverse\Permissions\Models\Role_permission();
                   $assignSysAdmin->role_id = $sysadmin->id;
                   $assignSysAdmin->permission_id = $permSys->id;
                   $assignSysAdmin->save();
@@ -191,7 +191,7 @@ class AssignSuperadmin extends Command
 
               $assignAdminExists =\Devuniverse\Permissions\Models\Role_permission::where('role_id', $admin->id)->where('permission_id', $perm->id)->first();
               if(!$assignAdminExists){
-                $assignAdmin = new\Devuniverse\Permissions\Models\Role_permission();
+                $assignAdmin = new \Devuniverse\Permissions\Models\Role_permission();
                 $assignAdmin->role_id = $admin->id;
                 $assignAdmin->permission_id = $perm->id;
                 $assignAdmin->save();
@@ -216,7 +216,7 @@ class AssignSuperadmin extends Command
 
               $assignEditorExists =\Devuniverse\Permissions\Models\Role_permission::where('role_id', $editor->id)->where('permission_id', $permEditor->id)->first();
               if(!$assignEditorExists){
-                $assignEditor = new\Devuniverse\Permissions\Models\Role_permission();
+                $assignEditor = new \Devuniverse\Permissions\Models\Role_permission();
                 $assignEditor->role_id = $editor->id;
                 $assignEditor->permission_id = $permEditor->id;
                 $assignEditor->save();

@@ -39,16 +39,16 @@ class User extends Authenticatable
       return $this->hasMany('\Devuniverse\Permissions\Models\Role_permission');
 
   }
+  public function user_roles()
+  {
 
-  static public function userPermissions($entityid=null){
+      return $this->hasMany('\Devuniverse\Permissions\Models\Userrole');
 
-    $user = \Auth::user();
-    if($entityid !== null){
-      $userRole = \Devuniverse\Permissions\Models\Userrole::where('user_id', $user->id)->where('entity_id',$entityid)->first();
-    }else{
-      $userRole = \Devuniverse\Permissions\Models\Userrole::where('user_id', $user->id)->first();
-    }
+  }
+  static public function userPermissions($user,$entityid=0){
+
     $pxs = [];
+    $userRole = \Devuniverse\Permissions\Models\Userrole::where('user_id', $user->id)->where('entity_id',$entityid)->first();
     if($userRole){
       $rolePermissions = \Devuniverse\Permissions\Models\Role_permission::where('role_id', $userRole->role_id)->get();
       if($rolePermissions){
@@ -69,29 +69,23 @@ class User extends Authenticatable
     $userRolesX= array_column($userRoles->toArray(), 'role_id');
     return in_array($superAdminRoleId, $userRolesX ) ? true : false;
   }
-  static public function userCan($permission, $entityid=null){
-    if(self::userAdmin(Auth::user())){
-      return true;
+  static public function userCan($permission, $entityid=0){
+    $permissions = self::userPermissions(\Auth::user(), $entityid);
+    if( $permissions ){
+      $permissionIds = array_column($permissions->toArray(), 'permission_id');
     }else{
-      $permissions = self::userPermissions($entityid);
-      if( $permissions ){
-        $permissionIds = array_column($permissions->toArray(), 'permission_id');
-      }else{
-        $permissionIds = [];
-      }
-
-      $requested = \Devuniverse\Permissions\Models\Permission::where('slug', $permission)->first();
-      if($requested){
-        if (in_array($requested->id, $permissionIds)) {
-          return true;
-        }else{
-          return false;
-        }
-      }else{
-        return false;
-      }
+      $permissionIds = [];
     }
-
+    $requested = \Devuniverse\Permissions\Models\Permission::where('slug', $permission)->first();
+    if($requested){
+      if (!in_array($requested->id, $permissionIds)) {
+        return false;
+      }else{
+        return true;
+      }
+    }else{
+      return false;
+    }
   }
 
 }
