@@ -153,7 +153,8 @@ class AssignSuperadmin extends Command
           'list_projects','create_project','update_project','delete_project','read_own_media','read_media','list_medias','create_media','update_media',
           'delete_media','read_user','list_users','create_user','update_user','delete_user','remove_user','read_setting','list_settings','create_setting',
           'update_setting','access_dashboard','access_profile','access_module_posts','access_module_pages','access_module_projects','access_module_media',
-          'access_module_users','access_module_profile'];
+          'access_module_users','access_module_profile','read_board','list_boards','create_board','update_board','delete_board'
+        ];
 
           if($sysadmin){
 
@@ -182,7 +183,15 @@ class AssignSuperadmin extends Command
 
           $admin =\Devuniverse\Permissions\Models\Role::where('slug', 'admin')->first();
 
-          $toIncludeAdmin =  ['read_own_post','read_post','list_posts','create_post','update_post','delete_post','read_project','list_projects','create_project','update_project','delete_project','read_own_media','read_media','list_medias','create_media','update_media','delete_media','read_user','list_users','create_user','update_user','delete_user','remove_user','read_setting','list_settings','create_setting','update_setting','access_dashboard','access_profile','access_module_posts','access_module_pages','access_module_projects','access_module_media','access_module_users','access_module_profile'];
+          $toIncludeAdmin =  [
+            'read_own_post','read_post','list_posts','create_post','update_post','delete_post','read_project','list_projects','create_project','update_project','delete_project',
+            'read_own_media','read_media','list_medias','create_media','update_media','delete_media',
+            'read_user','list_users','create_user','update_user','delete_user','remove_user',
+            'read_setting','list_settings','create_setting','update_setting',
+            'access_dashboard','access_profile','access_module_posts','access_module_pages',
+            'access_module_projects','access_module_media','access_module_users','access_module_profile',
+            'read_board','list_boards','create_board','update_board','delete_board'
+          ];
 
           if($admin){
 
@@ -207,7 +216,13 @@ class AssignSuperadmin extends Command
 
           $editor =\Devuniverse\Permissions\Models\Role::where('slug', 'editor')->first();
 
-          $toIncludeEditor =  ['read_own_post','read_post','list_posts','create_post','update_post','delete_post','read_project','list_projects','create_project','update_project','read_own_media','read_media','list_medias','create_media','update_media','delete_media','access_dashboard','access_profile','access_module_posts','access_module_pages','access_module_projects','access_module_media','access_module_users','access_module_profile'];
+          $toIncludeEditor =  [
+            'read_own_post','read_post','list_posts','create_post','update_post','delete_post','read_project','list_projects','create_project','update_project',
+            'read_own_media','read_media','list_medias','create_media','update_media','delete_media',
+            'access_dashboard','access_profile','access_module_posts','access_module_pages','access_module_projects',
+            'access_module_media','access_module_users','access_module_profile',
+            'read_board','list_boards','create_board','update_board'
+          ];
 
           if($editor){
 
@@ -240,7 +255,9 @@ class AssignSuperadmin extends Command
           'create_project','update_project','delete_project','read_own_media',
           'read_media','list_medias','create_media','update_media',
           'delete_media','read_task','list_tasks','create_task','update_task',
-          'delete_task','manage_team','send_invitation','remove_invitation','remove_user'];
+          'delete_task','manage_team','send_invitation','remove_invitation','remove_user',
+          'read_board','list_boards','create_board','update_board','delete_board'
+        ];
 
           if($owner){
 
@@ -264,7 +281,11 @@ class AssignSuperadmin extends Command
 
           $member =\Devuniverse\Permissions\Models\Role::where('slug', 'team_member')->first();
 
-          $toIncludeMember =  ['access_dashboard','access_profile','access_module_posts','access_module_projects','access_module_tasks','access_module_media','access_module_profile','read_own_post','list_projects','read_project','read_own_media','read_media','list_medias','create_media','update_media','delete_media','read_task','list_tasks','create_task','update_task'];
+          $toIncludeMember =  [
+            'access_dashboard','access_profile','access_module_posts','access_module_projects','access_module_tasks','access_module_media','access_module_profile',
+            'read_own_post','list_projects','read_project','read_own_media','read_media','list_medias','create_media','update_media','delete_media',
+            'read_task','list_tasks','create_task','update_task',
+            'read_board','list_boards','create_board'];
 
           if($member){
 
