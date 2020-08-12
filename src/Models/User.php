@@ -53,7 +53,11 @@ class User extends Authenticatable
       $rolePermissions = \Devuniverse\Permissions\Models\Role_permission::where('role_id', $userRole->role_id)->get();
       if($rolePermissions){
         $pxs = $rolePermissions;
+      }else{
+        $pxs =[];
       }
+    }else{
+      $pxs =[];
     }
     return $pxs;
   }
