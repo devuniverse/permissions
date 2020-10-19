@@ -11,6 +11,7 @@ use Devuniverse\Permissions\Models\Role_permission;
 
 class Role extends Model
 {
+  protected $table = 'roles_px';
 
     public function rolePermissions(){
 

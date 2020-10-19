@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Userrole extends Model
 {
-  protected $table = 'userroles';
+  protected $table = 'userroles_px';
 }
